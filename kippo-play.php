@@ -1,5 +1,8 @@
 <?php
 
+# Edited by Troy Mitchell (troy@troymitchell.net) 02/17/2018
+# Fixed line # 116 for use with Cowrie Honeypot from Kippo Honeypot
+
 # Used for <title></title>
 $page_title = "TTY Log Playback | Fast Visualization for your Kippo Based SSH Honeypot";
 
@@ -110,7 +113,8 @@ require('include/header.php');
                                 $log .= shell_exec("base64 -w 0 " . $log_path . " 2>&1");
                             else {
                                 $log .= "*** Log: $log_path ***\n";
-                                $log .= shell_exec("python /opt/cowrie/utils/playlog.py -m 0 " . $log_path);
+                                #$log .= shell_exec("python /opt/cowrie/utils/playlog.py -m 0 " . $log_path);
+                                $log .= shell_exec("/home/cowrie/cowrie/bin/playlog -m 0 " . $log_path);
                                 $log .= "\n\n*** End Of Log ***\n\n";
                             }
                         } else
